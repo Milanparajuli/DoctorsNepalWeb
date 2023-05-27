@@ -5,7 +5,7 @@
       <div class="form-group py-2">
         <label class="h4 text-muted">Username</label>
         <div class="input-field">
-          <span class="far fa-user p-2"></span>
+          <span class="fa fa-user p-2"></span>
           <input
             type="text"
             class="form-control"
@@ -33,7 +33,7 @@
       <div class="form-group py-1 pb-2">
         <label class="h4 text-muted">Password</label>
         <div class="input-field">
-          <span class="fas fa-lock p-2"></span>
+          <span class="fa fa-lock p-2"></span>
           <input
             [type]="fieldTextType ? 'text' : 'password'"
             class="form-control"
@@ -42,7 +42,7 @@
             required
           />
           <button class="btn bg-white text-muted" (click)="toggleFieldTextType()">
-            <span class="far fa-eye-slash"></span>
+            <span class="fa fa-eye-slash"></span>
           </button>
         </div>
         <span
@@ -64,18 +64,18 @@
       </div>
       <div class="d-flex align-items-start">
         <div class="remember">
-          <label class="option text-muted">
+          <label class="option text-muted mr-3">
             Remember me
             <input type="radio" name="radio" />
             <span class="checkmark"></span>
           </label>
         </div>
-        <div class="ml-auto">
+        <div class="ml-3">
           <a (click)="forgotPassword()" id="forgot">Forgot Password?</a>
         </div>
       </div>
       <button
-        class="btn btn-block text-center my-3"
+        class="btn btn-block text-center my-3 w-100"
         (click)="loginUser(loginForms.value)"
       >
         Log in
@@ -85,4 +85,3 @@
       </div>
     </form>
   </div>
-  
