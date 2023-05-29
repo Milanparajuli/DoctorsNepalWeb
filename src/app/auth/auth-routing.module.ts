@@ -4,7 +4,7 @@ import { AuthComponent } from './auth.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 
-const routes: Routes = [{ path: '', component: AuthComponent 
+const routes: Routes = [{ path: '', component: LoginComponent
 },
 {
   path: 'register',
