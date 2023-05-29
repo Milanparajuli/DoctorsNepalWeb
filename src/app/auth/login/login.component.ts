@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private form: FormBuilder,
     // private userService: UserService,
-    // private router: Router,
+    private router: Router,
     // private toastrService:ToastrService
   ) {}
 
@@ -53,6 +54,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(login: any) {
+    // this.router.navigate(['auth/register'])
   //   this.submitted = true;
   //   console.log(login);
   //   if (this.loginForms.valid) {
@@ -84,7 +86,7 @@ export class LoginComponent implements OnInit {
     // this.router.navigate(['auth/forgot-password']);
   }
   signUp() {
-    // this.router.navigate(['auth/register']);
+    this.router.navigate(['auth/register']);
   }
 
   toggleFieldTextType() {

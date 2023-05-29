@@ -11,13 +11,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './common/nav/nav.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    SignupComponent,
     NavComponent,
     FooterComponent,
     PageNotFoundComponent
@@ -26,9 +25,8 @@ import { PageNotFoundComponent } from './common/page-not-found/page-not-found.co
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
