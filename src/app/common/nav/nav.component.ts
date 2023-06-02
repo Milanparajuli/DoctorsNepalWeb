@@ -14,8 +14,12 @@ export class NavComponent implements OnInit {
   menus = [
     {
       name: 'Home',
-      link: '/home',
+      link: '/user-detail',
     },
+    {
+      name:'Find Doctors',
+      link : '/user-detail/doctor-list'
+    }
     // {
     // name: 'Logout',
     // link:'/login'

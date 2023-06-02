@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-secondary text-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-danger text-light">
     <!-- expand-lg blue bg-secondary text-light -->
     <a class="navbar-brand ml-5 mr-5">Navbar</a>
     <button
@@ -14,13 +14,15 @@
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto" *ngFor="let menu of menus">
+      <ul class="navbar-nav mr-auto">
+        <div *ngFor="let menu of menus">
         <li class="nav-item active col-sm-6">
           <a routerLink="{{ menu.link }}" class="nav-link">
             {{ menu.name }}
           </a>
         </li>
-        <li class="nav-item active col-sm-6">
+        </div>
+        <li class="nav-item active float-end col-sm-6">
           <a class="nav-link" (click)="logout()"> Logout </a>
         </li>
       </ul>

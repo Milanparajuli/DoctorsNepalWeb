@@ -1,4 +1,8 @@
-
+.intro{
+    overflow: auto;
+    text-align: justify;
+    margin-left:25px;
+}
 img{
     margin-left: 5%;
     margin-top: 40px;
@@ -9,9 +13,10 @@ img{
     overflow: auto;
 }
 .card{
+    box-shadow: 10px 10px 10px 10px #888888;
     overflow: auto;
     width: 60vw; 
-    height: 60vh;
+    height: 65vh;
 }
 .card::-webkit-scrollbar {
     display: none;
