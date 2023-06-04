@@ -1,31 +1,65 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-danger text-light">
-    <!-- expand-lg blue bg-secondary text-light -->
-    <a class="navbar-brand ml-5 mr-5">Navbar</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <div *ngFor="let menu of menus">
-        <li class="nav-item active col-sm-6">
+<nav class="navbar navbar-expand-lg navbar-light bg-primary text-light">
+  <a class="w-20 navbar-brand ml-5 mr-5 p-3">Doctors Nepal</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-start" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <div *ngFor="let menu of menus">
+        <li class="nav-item active">
           <a routerLink="{{ menu.link }}" class="nav-link">
             {{ menu.name }}
           </a>
         </li>
-        </div>
-        <li class="nav-item active float-end col-sm-6">
+      </div>
+    </ul>
+
+    <div
+      class="collapse navbar-collapse justify-content-end"
+      id="navbarSupportedContent"
+    >
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item active col-sm-3"*ngIf="isLoggedIn" >
           <a class="nav-link" (click)="logout()"> Logout </a>
         </li>
       </ul>
+
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item active float-end col-sm-3" *ngIf="!isLoggedIn" >
+          <a class="nav-link" (click)="login()"> Login </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item active float-end col-sm-3" *ngIf="!isLoggedIn" >
+          <a class="nav-link" (click)="register()"> Register </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item active float-end col-sm-3" *ngIf="isLoggedIn" >
+          <img src="../../../assets/images/profile.jpg" alt="">
+        </li>
+      </ul>
     </div>
-  </nav>
-  
+    <!-- <li class="nav-item active col-sm-3"*ngIf="isLoggedIn" >
+          <a class="nav-link" (click)="logout()"> Logout </a>
+        </li>
+
+        <li class="nav-item active float-end col-sm-3" *ngIf="!isLoggedIn" >
+          <a class="nav-link" (click)="login()"> Login </a>
+        </li>
+
+        <li class="nav-item active float-end col-sm-3" *ngIf="!isLoggedIn" >
+          <a class="nav-link" (click)="register()"> Register </a>
+        </li> -->
+  </div>
+</nav>

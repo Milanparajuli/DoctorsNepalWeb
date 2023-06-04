@@ -1,14 +1,22 @@
 <div class="container">
+  <div class="row">
+    <div class="col-6">
+        <h1 *ngIf="isLoggedIn">{{name}}</h1>
+    </div>
+</div>
     <div class="row">
       <div class="col-6">
         <div class="card m-5">
           <img class="card-img" src="../../../assets/images/bg.jpg" alt="Card image cap">
           <div class="card-body">
-            <h2 class="card-title intro heading">About</h2>
+            <h2 class="card-title intro heading">Health</h2>
             <div class="content">
               <h3 class="card-text intro">
                 Keep yourself and your family healthy        </h3>
-                
+                <p><strong>Contact Information:</strong></p>
+                <span class="fa fa-envelope-open m-2"> </span><a class="text-muted text-decoration-none" href="mailto:info@milanparajuli.com.np">Milan parajuli</a>
+                <span class="fa fa-phone m-2"> </span><a class="text-muted text-decoration-none" href="tel:9860894447">Call Me</a>
+
             </div>
             <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
           </div>

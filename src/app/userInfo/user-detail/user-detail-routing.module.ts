@@ -12,7 +12,7 @@ const routes: Routes = [{ path: '', component: BannerSecComponent },
 {
   path:'doctor-list',
   component:HomeComponent
-}
+},
 ];
 
 @NgModule({

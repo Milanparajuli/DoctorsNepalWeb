@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   username: any;
   inValidMsg: string = '';
   id: any;
+  name:any;
 
   constructor(
     private form: FormBuilder,
@@ -79,6 +80,8 @@ export class LoginComponent implements OnInit {
     }
     localStorage.setItem(this.key, login.userId);
     localStorage.setItem(this.key, login.username);
+    localStorage.setItem(this.key, login.fullName);
+    this.name= localStorage.getItem(this.key);
     this.userId = localStorage.getItem(this.key);
     this.username = localStorage.getItem(this.key);
   }

@@ -5,13 +5,19 @@ img{
     height: 30vh;
     width: 15vw;
 }
+h1, h3, h2{
+    margin: 0%;
+}
+strong {
+    font-size: large;
+}
 .content{
     overflow: auto;
 }
 .card{
     overflow: auto;
     width: 60vw; 
-    height: 60vh;
+    height: 50vh;
 }
 .card::-webkit-scrollbar {
     display: none;
@@ -20,6 +26,14 @@ img{
     // box-shadow: 10px 10px 10px 10px #e2d1e5;
     align-items: center;
     border-radius: 50%;
-    height: 150px;
-    width: 150px;
+    height: 100;
+    width: 90px;
+}
+
+.row {
+    width: 99vw;
+}
+
+.doctors-detail{
+
 }

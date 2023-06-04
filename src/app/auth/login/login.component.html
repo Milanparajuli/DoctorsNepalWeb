@@ -1,11 +1,11 @@
 <div class="wrapper bg-white">
-    <div class="h2 text-center text-danger">Doctors Nepal</div>
-    <div class="h3 text-muted text-center pt-2 text-danger">Enter your login details</div>
+    <div class="h2 text-center text-primary">Doctors Nepal</div>
+    <div class="h3 text-muted text-center pt-2 text-primary">Enter your login details</div>
     <form class="pt-3" [formGroup]="loginForms">
       <div class="form-group py-2">
-        <label class="h4 text-muted text-danger">Username</label>
+        <label class="h4 text-muted text-primary">Username</label>
         <div class="input-field">
-          <span class="fa fa-user p-2 text-danger"></span>
+          <span class="fa fa-user p-2 text-primary"></span>
           <input
             type="text"
             class="form-control"
@@ -33,7 +33,7 @@
       <div class="form-group py-1 pb-2">
         <label class="h4 text-muted text-danger">Password</label>
         <div class="input-field">
-          <span class="text-danger fa fa-lock p-2"></span>
+          <span class="text-primary fa fa-lock p-2"></span>
           <input
             [type]="fieldTextType ? 'text' : 'password'"
             class="form-control"
@@ -42,7 +42,7 @@
             required
           />
           <button class="btn bg-white text-muted" (click)="toggleFieldTextType()">
-            <span class="text-danger fa fa-eye-slash"></span>
+            <span class="text-primary fa fa-eye-slash"></span>
           </button>
         </div>
         <span
@@ -70,18 +70,18 @@
             <span class="checkmark"></span>
           </label>
         </div> -->
-        <div class="ml-3 text-danger">
+        <div class="ml-3 text-primary">
           <a (click)="forgotPassword()" id="forgot">Forgot Password?</a>
         </div>
       </div>
       <button
-        class="bg-danger btn btn-block text-center my-3 w-100"
+        class="bg-primary btn btn-block text-center my-3 w-100"
         (click)="loginUser(loginForms.value)"
       >
         Log in
       </button>
       <div class="text-center pt-3 text-muted">
-        Not a member? <a (click)="signUp()" class="navLink text-danger">Sign up</a>
+        Not a member? <a (click)="signUp()" class="navLink text-primary">Sign up</a>
       </div>
     </form>
   </div>

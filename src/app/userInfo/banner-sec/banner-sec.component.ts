@@ -10,12 +10,19 @@ import { Carousel } from 'src/app/model/carousel.model';
 export class BannerSecComponent implements OnInit {
   carousels: Carousel[] = [];
   showLoader: boolean = false;
+  isLoggedIn: boolean |undefined;
+  name: any | undefined;
   constructor(
     // private clientService: ClientService,
     private viewportScroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
+    if(localStorage.getItem('userid')) {
+      this.isLoggedIn=true;
+      this.name = localStorage.getItem('fullName');
+      console.log('name: ',this.name);
+    }
     // this.getCarousel();
   }
 

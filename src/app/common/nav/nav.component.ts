@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
+  isLoggedIn: any;
   logoutRequest: LogoutResponseModel = new LogoutResponseModel();
 
   menus = [
@@ -32,7 +33,9 @@ export class NavComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isLoggedIn = localStorage.getItem('userId');;
+  }
 
   logout() {
     console.log('Logout method called');
@@ -51,6 +54,14 @@ export class NavComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  login() {
+    this.router.navigate(['auth/login']);
+  }
+
+  register(){
+    this.router.navigate(['auth/register']);
   }
 
 }

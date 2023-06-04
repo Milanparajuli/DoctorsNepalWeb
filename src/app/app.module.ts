@@ -10,8 +10,6 @@ import { NavComponent } from './common/nav/nav.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
 import { AuthModule } from './auth/auth.module';
-import { HomeComponent } from './userInfo/home/home.component';
-import { BannerSecComponent } from './userInfo/banner-sec/banner-sec.component';
 
 
 @NgModule({
