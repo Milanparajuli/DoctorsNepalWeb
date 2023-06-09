@@ -1,151 +1,3 @@
-<!-- <div class="content"> -->
-<!-- <div class="card-body">
-  <div class="box container">
-    <h1 class="text-center mt-3 text-primary">Sign up</h1>
-    <form [formGroup]="signupForms">
-      <div class="row">
-        <div class="col-sm-12 mt-2">
-          <div class="form-group">
-            <label>Full Name</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                formControlName="fullName"
-                placeholder="Enter Full Name"
-                required
-              />
-            </div>
-            <span
-              *ngIf="
-                submitted ||
-                forms['fullName'].dirty ||
-                (forms['fullName'].touched && forms['fullName'].invalid)
-              "
-              class="info-msg text-danger"
-            >
-              <small
-                *ngIf="forms['fullName'].errors &&
-                                    forms['fullName'].errors?.['required']"
-              >
-                Full name is required !
-              </small>
-            </span>
-          </div>
-        </div>
-
-       <div class="col-sm-12 mt-3">
-        <div class="form-group">
-          <label>Email</label>
-          <div class="input-group">
-            <input
-              type="text"
-              class="form-control"
-              formControlName="email"
-              placeholder="Enter Email"
-              required
-            />
-          </div>
-          <span
-            *ngIf="
-              submitted ||
-              forms['email'].dirty ||
-              (forms['email'].touched && forms['email'].invalid)
-            "
-            class="info-msg text-danger"
-          >
-            <small
-              *ngIf="forms['email'].errors &&
-                                  forms['email'].errors?.['required']"
-            >
-              Email is required !
-            </small>
-          </span>
-        </div>
-      </div>
-
-        <div class="col-sm-12 mt-3">
-          <div class="form-group">
-            <label>User Name</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                formControlName="username"
-                placeholder="Enter Username"
-                required
-              />
-            </div>
-            <span
-              *ngIf="
-                submitted ||
-                forms['username'].dirty ||
-                (forms['username'].touched && forms['username'].invalid)
-              "
-              class="info-msg text-danger"
-            >
-              <small
-                *ngIf="forms['username'].errors &&
-                                    forms['username'].errors?.['required']"
-              >
-                User name is required !
-              </small>
-            </span>
-          </div>
-        </div>
-        <div class="col-sm-12 mt-3">
-          <div class="form-group">
-            <label>Password</label>
-            <div class="input-group">
-              <input
-                type="password"
-                class="form-control"
-                formControlName="password"
-                placeholder="Enter Password"
-                required
-              />
-            </div>
-            <span
-              *ngIf="
-                submitted ||
-                forms['password'].dirty ||
-                (forms['password'].touched && forms['password'].invalid)
-              "
-              class="info-msg text-danger"
-            >
-              <small
-                *ngIf="forms['password'].errors &&
-                                    forms['password'].errors?.['required']"
-              >
-                Password is required !
-              </small>
-            </span>
-          </div>
-        </div>
-        <div class="col-sm-12 mt-2">
-          <div class="form-group">
-            <div class="input-group">
-              <input
-                type="submit"
-                class="form-control btn btn-primary"
-                (click)="onSendData(signupForms.valueChanges)"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 mt-3">
-        <div class="form-group link">
-          <p routerLink="/login" class="mb-2 mt-2">Already have account? Click here</p>
-        </div>
-      </div>
-    </form>
-  </div>
-</div> -->
-<!-- <app-footer></app-footer> -->
-<!-- </div> -->
-<!--  -->
-
 <div class="wrapper bg-white">
     <div class="h2 text-center text-primary">Doctors Nepal</div>
     <div class="h3 text-muted text-center pt-2">Enter your details</div>
@@ -208,7 +60,7 @@
           </small>
         </span>
       </div>
-  
+
       <!--  -->
       <div class="form-group py-2">
         <label class="h4 text-muted">User Name</label>
@@ -239,7 +91,7 @@
         </span>
       </div>
       <!--  -->
-  
+
       <div class="form-group py-1 pb-2">
         <label class="h4 text-muted">Password</label>
         <div class="input-field">
@@ -283,4 +135,3 @@
       </div>
     </form>
   </div>
-  

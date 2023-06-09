@@ -10,6 +10,10 @@ import { NavComponent } from './common/nav/nav.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
 import { AuthModule } from './auth/auth.module';
+import { ToastrModule } from 'ngx-toastr';
+import {NgxPaginationModule} from "ngx-pagination";
+import {ReactiveFormsModule} from "@angular/forms";
+import {UserDetailModule} from "./userInfo/user-detail/user-detail.module";
 
 
 @NgModule({
@@ -21,14 +25,18 @@ import { AuthModule } from './auth/auth.module';
     // BannerSecComponent,
     // HomeComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    BrowserAnimationsModule,
-    AuthModule,
-    HttpClientModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        BrowserAnimationsModule,
+        AuthModule,
+        HttpClientModule,
+        ToastrModule.forRoot(),
+        NgxPaginationModule,
+        ReactiveFormsModule,
+        UserDetailModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

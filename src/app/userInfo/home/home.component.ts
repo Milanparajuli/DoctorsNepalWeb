@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from 'src/app/service/auth.service';
+import {Component, OnInit, Input} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AuthService} from 'src/app/service/auth.service';
+import {DoctorService} from "../../service/doctor.service";
 
 @Component({
   selector: 'app-home',
@@ -10,76 +11,74 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class HomeComponent implements OnInit {
   viewDoctor: any;
-  name:any;
+  name: any;
   isLoggedIn = false;
-  doctorList = [
-    {
-      name:'Milan Parajuli1',
-      phone:'9860894447',
-      address:'kapan',
-      profile:'../../../../assets/images/bg.jpg',
-      speacialon:'Heart',
-      description:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum aliquid sit ullam, aperiam libero tempore amet voluptates ex temporibus error expedita incidunt dicta eius odit animi, eos quo, perspiciatis rerum?'
-    },
-    {
-      name:'Milan Parajuli2',
-      phone:'9860894447',
-      address:'kapan',
-      profile:'../../../../assets/images/bg.jpg',
-      speacialon:'Eye',
-      description:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum aliquid sit ullam, aperiam libero tempore amet voluptates ex temporibus error expedita incidunt dicta eius odit animi, eos quo, perspiciatis rerum?'
-    },
-    {
-      name:'Milan Parajuli3',
-      phone:'9860894447',
-      address:'kapan',
-      profile:'../../../../assets/images/bg.jpg',
-      speacialon:'Heart',
-      description:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum aliquid sit ullam, aperiam libero tempore amet voluptates ex temporibus error expedita incidunt dicta eius odit animi, eos quo, perspiciatis rerum?'
-    },
-    {
-      name:'Milan Parajuli4',
-      phone:'9860894447',
-      address:'kapan',
-      profile:'../../../../assets/images/bg.jpg',
-      speacialon:'Heart',
-      description:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum aliquid sit ullam, aperiam libero tempore amet voluptates ex temporibus error expedita incidunt dicta eius odit animi, eos quo, perspiciatis rerum?'
-    },
-    {
-      name:'Milan Parajuli5',
-      phone:'9860894447',
-      address:'kapan',
-      profile:'../../../../assets/images/bg.jpg',
-      speacialon:'Heart',
-      description:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum aliquid sit ullam, aperiam libero tempore amet voluptates ex temporibus error expedita incidunt dicta eius odit animi, eos quo, perspiciatis rerum?'
+  @Input() doctorName: any;
+  doctorList: any;
 
-    },
-    {
-      name:'Milan Parajuli6',
-      phone:'9860894447',
-      address:'kapan',
-      profile:'../../assets/images/bg.jpg',
-      speacialon:'Heart',
-      description:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum aliquid sit ullam, aperiam libero tempore amet voluptates ex temporibus error expedita incidunt dicta eius odit animi, eos quo, perspiciatis rerum?'
-
-    },
-
-  ]
+  // doctorName: any;
 
   constructor(
-     private router: Router,
-     private authService: AuthService,
-     private ngbModal:NgbModal
-    ) { }
-
-  ngOnInit(): void {
+    private router: Router,
+    private authService: AuthService,
+    private ngbModal: NgbModal,
+    private doctorService: DoctorService,
+    private activatedRoute: ActivatedRoute
+  ) {
   }
 
-  viewDetails(template: any,index:any){
-    if(localStorage.getItem('userId')) {
-    //   this.router.navigate(['user-detail/doctor-detail']);
-    this.ngbModal.open(template,{size:'lg'});
-    this.viewDoctor = this.doctorList[index];
+  ngOnInit(): void {
+    this.getParams();
+    this.doctorService.getDoctorSearch().subscribe({
+      next: (res: any) => {
+        if (res) {
+          this.getParams();
+          this.doctorService.setDoctorSearch(null);
+        }
+      }
+    })
+    console.log(this.name);
+    this.listDoctor();
+  }
+
+  getParams() {
+    this.activatedRoute.queryParams.subscribe({
+      next: (res: any) => {
+        this.name = res?.name;
+        res ? this.getDoctorByName(this.name) : this.listDoctor();
+      }
+    })
+  }
+
+  getDoctorByName(name: any) {
+    this.doctorService.getDoctorByName(this.name).subscribe(
+      (response: any) => {
+        this.doctorList = response.doctor;
+      },
+      error => {
+        console.error(error);
+      }
+    )
+  }
+
+  listDoctor() {
+    this.doctorService.getDoctor().subscribe(
+      (response: any) => {
+        // this.userId = response;
+        this.doctorList = response.doctor;
+        console.log('resp: ', this.doctorList);
+      },
+      (error: any) => {
+        console.error('Error: ', error);
+      }
+    );
+  }
+
+  viewDetails(template: any, index: any) {
+    if (localStorage.getItem('userId')) {
+      //   this.router.navigate(['user-detail/doctor-detail']);
+      this.ngbModal.open(template, {size: 'lg'});
+      this.viewDoctor = this.doctorList[index];
     } else {
       this.router.navigate(['auth/login']);
     }

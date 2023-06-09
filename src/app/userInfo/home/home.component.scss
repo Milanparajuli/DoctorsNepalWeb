@@ -1,11 +1,10 @@
 
 img{
     margin-left: 5%;
-    margin-top: 40px;
-    height: 30vh;
-    width: 15vw;
+    margin-top: 10px;
 }
 h1, h3, h2{
+  font-size: 15px;
     margin: 0%;
 }
 strong {
@@ -16,8 +15,8 @@ strong {
 }
 .card{
     overflow: auto;
-    width: 60vw; 
-    height: 50vh;
+    width: 30vw;
+    height: 30vh;
 }
 .card::-webkit-scrollbar {
     display: none;
@@ -26,14 +25,11 @@ strong {
     // box-shadow: 10px 10px 10px 10px #e2d1e5;
     align-items: center;
     border-radius: 50%;
-    height: 100;
-    width: 90px;
+    height: 80px;
+    width: 80px;
 }
 
 .row {
     width: 99vw;
 }
 
-.doctors-detail{
-
-}

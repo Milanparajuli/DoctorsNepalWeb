@@ -27,6 +27,18 @@
       class="collapse navbar-collapse justify-content-end"
       id="navbarSupportedContent"
     >
+
+    <ul class="navbar-nav mb-2 mb-lg-0" *ngIf="isLoggedIn">
+      <li class="nav-item active col-sm-6" >
+        <form class="form-inline my-2 my-lg-0" [formGroup]="searchGroup">
+          <input class="form-control mr-sm-2" type="search" formControlName="search" placeholder="Search" aria-label="Search">
+        </form>
+      </li>
+
+      <li class="nav-item active col-sm-6 ml-2"><a class="btn btn-outline-light m-2 my-2 my-sm-0" (click)="search(searchGroup.value)" type="submit">Search</a></li>
+    </ul>
+
+
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item active col-sm-3"*ngIf="isLoggedIn" >
           <a class="nav-link" (click)="logout()"> Logout </a>
@@ -50,16 +62,6 @@
         </li>
       </ul>
     </div>
-    <!-- <li class="nav-item active col-sm-3"*ngIf="isLoggedIn" >
-          <a class="nav-link" (click)="logout()"> Logout </a>
-        </li>
-
-        <li class="nav-item active float-end col-sm-3" *ngIf="!isLoggedIn" >
-          <a class="nav-link" (click)="login()"> Login </a>
-        </li>
-
-        <li class="nav-item active float-end col-sm-3" *ngIf="!isLoggedIn" >
-          <a class="nav-link" (click)="register()"> Register </a>
-        </li> -->
   </div>
 </nav>
+

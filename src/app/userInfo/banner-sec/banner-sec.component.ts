@@ -21,7 +21,6 @@ export class BannerSecComponent implements OnInit {
     if(localStorage.getItem('userid')) {
       this.isLoggedIn=true;
       this.name = localStorage.getItem('fullName');
-      console.log('name: ',this.name);
     }
     // this.getCarousel();
   }
@@ -30,7 +29,7 @@ export class BannerSecComponent implements OnInit {
   //   this.showLoader = true;
   //   this.clientService.listAllCarousels().subscribe({
   //     next: (response: any) => {
-  //       this.carousels = response.carousels;   
+  //       this.carousels = response.carousels;
   //     }, complete: () => {
   //       this.showLoader = false;
   //     }

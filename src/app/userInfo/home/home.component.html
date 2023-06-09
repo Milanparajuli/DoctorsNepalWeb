@@ -5,9 +5,9 @@
         <div class="card m-3 d-flex" style="width: 15rem;">
             <img class="card-img-top" src="{{doctor.profile}}" alt="profile">
             <div class="card-body">
-              <h1 class="card-title">{{doctor.name}}</h1>
-              <h3 class="card-text">{{doctor.address}}</h3>
-              <h3 class="card-text">{{doctor.phone}}</h3>
+              <h1 class="card-title">Name: {{doctor.name}}</h1>
+              <h3 class="card-text">Address: {{doctor.address}}</h3>
+              <h3 class="card-text">Contact: {{doctor.phone}}</h3>
               <h3 class="card-text">Spesial on "{{doctor.speacialon}}"</h3>
               <a (click)="viewDetails(details,i)" class="btn btn-primary">Details</a>
             </div>

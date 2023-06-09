@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +18,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private form: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -40,10 +42,12 @@ export class SignupComponent implements OnInit {
       this.userService.addUser(signup).subscribe(
         (response: any) => {
           this.isSubmitting = false;
+          this.toastService.success("User Added sucessfulluy", "success");
           this.router.navigate(['/auth/login']);
           console.log('user addded successfully');
         },
         (error: any) => {
+          this.toastService.error("Error while user add", "error");
           this.isSubmitting = false;
         }
       );

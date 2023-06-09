@@ -17,6 +17,9 @@ import { BannerSecComponent } from '../banner-sec/banner-sec.component';
     // FooterComponent,
     BannerSecComponent
   ],
+  exports: [
+    HomeComponent
+  ],
   imports: [
     CommonModule,
     UserDetailRoutingModule

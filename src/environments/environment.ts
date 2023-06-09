@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:8088/api/',
+  doctorBaseUrl :'http://localhost:8088/'
 };
 
 /*

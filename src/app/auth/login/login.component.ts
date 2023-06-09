@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/service/user.service';
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {UserService} from 'src/app/service/user.service';
+import {DoctorService} from "../../service/doctor.service";
 
 @Component({
   selector: 'app-login',
@@ -20,18 +22,21 @@ export class LoginComponent implements OnInit {
   username: any;
   inValidMsg: string = '';
   id: any;
-  name:any;
+  name: any;
+  doctorList: any;
 
   constructor(
     private form: FormBuilder,
     private userService: UserService,
     private router: Router,
-    // private toastrService:ToastrService
-  ) {}
+    private toastrService: ToastrService,
+    private doctorService: DoctorService
+  ) {
+  }
 
   ngOnInit(): void {
     // this.loginFormByAuth();
-    this.listUserById(this.id);
+    // this.listUserById(this.id);
     this.loginForms = this.form.group({
       username: [undefined, Validators.required],
       password: [undefined, Validators.required],
@@ -42,37 +47,34 @@ export class LoginComponent implements OnInit {
     return this.loginForms.controls;
   }
 
-  listUserById(id: any) {
-    this.userService.getUserById(id).subscribe(
-      (response: any) => {
-        // this.userId = response;
-        console.log('resp: ', response);
-        this.id = localStorage.getItem(response.id);
-      },
-      (error: any) => {
-        console.error('Error: ', error);
-      }
-    );
-  }
+  // listUserById(id: any) {
+  //   this.userService.getUserById(id).subscribe(
+  //     (response: any) => {
+  //       // this.userId = response;
+  //       this.id = localStorage.getItem(response.id);
+  //     },
+  //     (error: any) => {
+  //       console.error('Error: ', error);
+  //     }
+  //   );
+  // }
 
   loginUser(login: any) {
     // this.router.navigate(['auth/register'])
     this.submitted = true;
-    console.log(login);
     if (this.loginForms.valid) {
       this.userService.login(login).subscribe(
         (response: any) => {
           this.isSubmitting = false;
-          // this.toastrService.success('Logged in Succesfully!!!', 'Success');
-          console.log('Login Sucessfully');
+          this.toastrService.success('Logged in Succesfully!!!', 'Success');
           this.router.navigate(['/user-detail']);
           localStorage.setItem('userId', response.userId);
+          this.doctorService.setAfterLogin(true);
         },
         (error: any) => {
           this.isSubmitting = false;
           this.inValidMsg = 'Either Password or username is not valid';
-          // this.toastrService.error('Either Password or username is not valid!!!', 'Invalid');
-          // window.location.reload();
+          this.toastrService.error('Either Password or username is not valid!!!', 'Invalid');
         }
       );
     } else {
@@ -81,7 +83,7 @@ export class LoginComponent implements OnInit {
     localStorage.setItem(this.key, login.userId);
     localStorage.setItem(this.key, login.username);
     localStorage.setItem(this.key, login.fullName);
-    this.name= localStorage.getItem(this.key);
+    this.name = localStorage.getItem(this.key);
     this.userId = localStorage.getItem(this.key);
     this.username = localStorage.getItem(this.key);
   }
@@ -89,6 +91,7 @@ export class LoginComponent implements OnInit {
   forgotPassword() {
     // this.router.navigate(['auth/forgot-password']);
   }
+
   signUp() {
     this.router.navigate(['auth/register']);
   }
@@ -96,5 +99,4 @@ export class LoginComponent implements OnInit {
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
   }
-
 }
