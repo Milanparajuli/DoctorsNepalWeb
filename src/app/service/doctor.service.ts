@@ -22,6 +22,7 @@ export class DoctorService {
   setDoctorSearch(data: any) {
     this.doctorSearch.next(data);
   }
+
   getAfterLogin() {
     return this.afterLogin.asObservable();
   }
@@ -32,10 +33,17 @@ export class DoctorService {
 
 
   getDoctor(): Observable<any> {
-    return this.httpClient.get<any>(this.doctorBaseUrl.concat("get-doctor"));
+    return this.httpClient.get<any>(this.doctorBaseUrl.concat("get-identity"));
   }
 
   getDoctorByName(name: any): Observable<any> {
-    return this.httpClient.get<any>(this.doctorBaseUrl.concat("doctor-by-name").concat('/' + name));
+    return this.httpClient.get<any>(this.doctorBaseUrl.concat("identity-by-address").concat('/' + name));
+  }
+  getDoctorBySpeciality(speciality: any): Observable<any> {
+    return this.httpClient.get<any>(this.doctorBaseUrl.concat("identity-by-speciality").concat('/' + speciality));
+  }
+
+  saveIdentities() {
+    return this.httpClient.get<any>(this.doctorBaseUrl.concat('saveIdentity'));
   }
 }

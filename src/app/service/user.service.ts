@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,8 @@ export class UserService {
   apiByIdEndPoint: string = 'users/by-id';
   baseUrl: string = environment.baseUrl;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   addUser(user: any): Observable<any> {
     return this.httpClient.post<any>(
@@ -21,7 +22,7 @@ export class UserService {
     );
   }
 
-  getUser(user: any): Observable<any> {
+  getUser(): Observable<any> {
     return this.httpClient.get<any>(this.baseUrl.concat(this.apiEndPoint));
   }
 
@@ -35,6 +36,13 @@ export class UserService {
   getUserById(id: any): Observable<any> {
     return this.httpClient.get<any>(
       this.baseUrl.concat(this.apiByIdEndPoint).concat('/' + id)
+    );
+  }
+
+  addAppointment(appointment: any, patientId: any): Observable<any> {
+    return this.httpClient.post<any>(
+      this.baseUrl.concat('appointment'),
+      appointment,patientId
     );
   }
 }

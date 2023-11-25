@@ -6,6 +6,7 @@ import {ToastrService} from "ngx-toastr";
 import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
 import {HomeComponent} from "../../userInfo/home/home.component";
 import {DoctorService} from "../../service/doctor.service";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-nav',
@@ -16,7 +17,8 @@ export class NavComponent implements OnInit {
   searchGroup: FormGroup = new FormGroup({});
   isLoggedIn: any = null;
   logoutRequest: LogoutResponseModel = new LogoutResponseModel();
-  doctorName: any;
+  roleType: any;
+  userList = [];
 
   menus = [
     {
@@ -42,6 +44,7 @@ export class NavComponent implements OnInit {
               private toastService: ToastrService,
               private form: FormBuilder,
               private doctorService: DoctorService,
+              private userService: UserService,
   ) {
   }
 
@@ -59,6 +62,7 @@ export class NavComponent implements OnInit {
         }
       }
     })
+    this.getUser();
   }
 
   get forms(): { [key: string]: AbstractControl } {
@@ -75,7 +79,6 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    console.log('Logout method called');
     const logoutEndpoint = '/users/logout';
     this.logoutRequest.username = localStorage.getItem('username') as string;
     console.log('get email from localstorage ', this.logoutRequest.username);
@@ -90,6 +93,15 @@ export class NavComponent implements OnInit {
       (error: any) => {
         this.toastService.error('Error while logout', 'error')
         console.error(error);
+      }
+    );
+  }
+
+  getUser() {
+    this.userService.getUserById(localStorage.getItem('userId')).subscribe(
+      (res: any) => {
+        this.userList = res;
+        this.roleType = res.roleType;
       }
     );
   }

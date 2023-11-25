@@ -3,6 +3,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AuthService} from 'src/app/service/auth.service';
 import {DoctorService} from "../../service/doctor.service";
+import {ToastrService} from "ngx-toastr";
+import {UserService} from "../../service/user.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-home',
@@ -10,11 +13,18 @@ import {DoctorService} from "../../service/doctor.service";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  form: FormGroup = new FormGroup({});
   viewDoctor: any;
   name: any;
   isLoggedIn = false;
   @Input() doctorName: any;
   doctorList: any;
+  roleType: any;
+  userList: any;
+  isPatient = false;
+  users: any;
+  userId: any;
+  diseaseType: any;
 
   // doctorName: any;
 
@@ -23,11 +33,16 @@ export class HomeComponent implements OnInit {
     private authService: AuthService,
     private ngbModal: NgbModal,
     private doctorService: DoctorService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toasterService: ToastrService,
+    private userService: UserService,
+    private formBuilder: FormBuilder,
   ) {
   }
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem('userId');
+    console.log('userId:', this.userId)
     this.getParams();
     this.doctorService.getDoctorSearch().subscribe({
       next: (res: any) => {
@@ -38,22 +53,25 @@ export class HomeComponent implements OnInit {
       }
     })
     console.log(this.name);
+    this.buildForm();
     this.listDoctor();
+    this.getUser();
+    this.getAllUser();
   }
 
   getParams() {
     this.activatedRoute.queryParams.subscribe({
       next: (res: any) => {
         this.name = res?.name;
-        res ? this.getDoctorByName(this.name) : this.listDoctor();
+        res ? this.getDoctorByNames(this.name) : this.listDoctor();
       }
     })
   }
 
-  getDoctorByName(name: any) {
+  getDoctorByNames(name: any) {
     this.doctorService.getDoctorByName(this.name).subscribe(
       (response: any) => {
-        this.doctorList = response.doctor;
+        this.doctorList = response.identity;
       },
       error => {
         console.error(error);
@@ -65,8 +83,8 @@ export class HomeComponent implements OnInit {
     this.doctorService.getDoctor().subscribe(
       (response: any) => {
         // this.userId = response;
-        this.doctorList = response.doctor;
-        console.log('resp: ', this.doctorList);
+        this.doctorList = response.identity;
+        console.log('respifjencn: ', this.doctorList);
       },
       (error: any) => {
         console.error('Error: ', error);
@@ -84,4 +102,96 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  syncDoctors() {
+    this.doctorService.saveIdentities().subscribe({
+      next: (res: any) => {
+        this.toasterService.success('Doctors Successfully Synced');
+      }
+    })
+  }
+
+  getUser() {
+    this.userService.getUserById(localStorage.getItem('userId')).subscribe(
+      (res: any) => {
+        this.userList = res;
+        this.roleType = res.roleType;
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  }
+
+  getAllUser() {
+    this.userService.getUser().subscribe(
+      (res: any) => {
+        console.log('response: hello', res);
+        this.roleType = res.roleType;
+        if (res.roleType === 'PATIENT') {
+          this.isPatient = true;
+          this.users = res.users;
+        }
+      }
+    )
+  }
+
+  bookAppointment(app: any, userId: any) {
+    this.userService.addAppointment(app, userId).subscribe(
+      (res: any) => {
+        console.log('hello world', res)
+        this.toasterService.success('Successfully booked appointment');
+      }, (err: any) => {
+        this.toasterService.error('unable to booking appointment');
+      }
+    )
+  }
+
+  buildForm() {
+    this.form = this.formBuilder.group({
+      disease: [undefined]
+    })
+  }
+
+  chooseWithSpeciality(disease: any) {
+    switch (disease) {
+      case '1':
+        this.diseaseType = 'Cardiologist';
+        break;
+      case '2':
+        this.diseaseType = 'Neurologist'
+        break;
+      case '3':
+        this.diseaseType = 'ophthalmologist';
+        break;
+      case '4':
+        this.diseaseType = 'Geriatric medicine'
+        break;
+      default:
+        this.toasterService.warning('please choose Disease first');
+    }
+    // if (disease === 1) {
+    //   this.diseaseType = 'Cardiologist'
+    // } else if (disease === 2) {
+    //   this.diseaseType = 'Neurologist'
+    // } else if (disease === 3) {
+    //   this.diseaseType = 'ophthalmologist'
+    // } else if (disease === 4) {
+    //   this.diseaseType = 'Geriatric medicine'
+    // }
+    console.log('diseaseType::::', this.diseaseType);
+    this.getDoctorBySpeciality(this.diseaseType);
+  }
+
+  getDoctorBySpeciality(disease: any) {
+    console.log('disease::::', disease)
+    this.doctorService.getDoctorBySpeciality(disease).subscribe(
+      (res => {
+        console.log('response', res)
+        this.doctorList = res.identity;
+      }),
+      err => {
+        console.error('error is', err);
+      }
+    )
+  }
 }

@@ -7,6 +7,7 @@ import { NavComponent } from 'src/app/common/nav/nav.component';
 import { HomeComponent } from '../home/home.component';
 import { FooterComponent } from 'src/app/common/footer/footer.component';
 import { BannerSecComponent } from '../banner-sec/banner-sec.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -20,9 +21,10 @@ import { BannerSecComponent } from '../banner-sec/banner-sec.component';
   exports: [
     HomeComponent
   ],
-  imports: [
-    CommonModule,
-    UserDetailRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        UserDetailRoutingModule,
+        ReactiveFormsModule
+    ]
 })
 export class UserDetailModule { }

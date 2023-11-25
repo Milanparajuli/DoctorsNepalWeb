@@ -14,13 +14,23 @@
 
   <div class="collapse navbar-collapse justify-content-start" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <div *ngFor="let menu of menus">
+<!--      <div *ngFor="let menu of menus">-->
         <li class="nav-item active">
-          <a routerLink="{{ menu.link }}" class="nav-link">
-            {{ menu.name }}
+          <a routerLink="/user-detail" class="nav-link">
+            Home
           </a>
         </li>
-      </div>
+      <li class="nav-item active" *ngIf="roleType!=='DOCTOR' ">
+        <a routerLink="/doctor-list" class="nav-link">
+          Find Doctor
+        </a>
+      </li>
+<!--      <li class="nav-item active" *ngIf="roleType==='DOCTOR' || roleType==='ADMIN'">-->
+<!--        <a routerLink="/patient-list" class="nav-link">-->
+<!--          Patient-->
+<!--        </a>-->
+<!--      </li>-->
+<!--      </div>-->
     </ul>
 
     <div

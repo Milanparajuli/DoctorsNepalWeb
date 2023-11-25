@@ -1,10 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
-import { AuthComponent } from './auth/auth.component';
-import { AuthGuard } from './guard/auth-guard.guard';
-import { LoginComponent } from './auth/login/login.component';
-import { HomeComponent } from './userInfo/home/home.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {PageNotFoundComponent} from './common/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   // {
