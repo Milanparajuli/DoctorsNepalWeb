@@ -66,12 +66,13 @@
       <h2>Degree: {{viewDoctor?.degree}}</h2>
       <strong> About Doctor:</strong> <br>
       <p>{{viewDoctor?.description}}</p>
+      <p>You 6.3 km. far from your doctors</p>
     </div>
     <div class="d-flex align-items-center p-5">
       <img src="{{viewDoctor?.profile}}" alt="profile">
     </div>
     <div *ngIf="roleType==='PATIENT'">
-      <button class="btn btn-success m-3" (click)="bookAppointment(viewDoctor,userId)">Book Appointment</button>
+<!--      <button class="btn btn-success m-3" (click)="bookAppointment(viewDoctor,userId)">Book Appointment</button>-->
     </div>
   </div>
 </ng-template>
