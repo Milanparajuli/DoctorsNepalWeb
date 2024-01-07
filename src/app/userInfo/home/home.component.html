@@ -35,7 +35,7 @@
         <h3 class="card-text">NMC No: {{doctor.nmcNo}}</h3>
         <h3 class="card-text">Speciality: "{{doctor.speacialon}}"</h3>
         <h3 class="card-text">Degree: "{{doctor.degree}}"</h3>
-        <a (click)="viewDetails(details,i)" class="btn btn-primary">Details</a>
+        <a (click)="viewDetails(details,i); getLongititudeLatitude(doctor.latitude, doctor.longitude)" class="btn btn-primary">Details</a>
       </div>
     </div>
   </div>
@@ -66,7 +66,7 @@
       <h2>Degree: {{viewDoctor?.degree}}</h2>
       <strong> About Doctor:</strong> <br>
       <p>{{viewDoctor?.description}}</p>
-      <p>You 6.3 km. far from your doctors</p>
+      <p>You {{distance.toFixed(2)}} km. far from your doctors</p>
     </div>
     <div class="d-flex align-items-center p-5">
       <img src="{{viewDoctor?.profile}}" alt="profile">

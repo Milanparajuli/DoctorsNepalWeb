@@ -45,4 +45,17 @@ export class UserService {
       appointment,patientId
     );
   }
+
+  getTwoPoint(startLat: any, startLon: any, endLat: any, endLon: any) {
+    return this.httpClient.get<any>(
+      environment.doctorBaseUrl.concat('distance/haversine'),
+      {
+        params: {
+          startLat: startLat,
+          startLon: startLon,
+          endLat: endLat,
+          endLon: endLon
+        },
+      })
+  }
 }

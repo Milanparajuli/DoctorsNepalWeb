@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   users: any;
   userId: any;
   diseaseType: any;
+  distance: any;
 
   // doctorName: any;
 
@@ -191,6 +192,18 @@ export class HomeComponent implements OnInit {
       }),
       err => {
         console.error('error is', err);
+      }
+    )
+  }
+
+  getLongititudeLatitude(endLat:any, endLon: any) {
+    debugger
+    const sLat = localStorage.getItem("Latitude");
+    const sLon = localStorage.getItem("Longitude");
+    this.userService.getTwoPoint(sLat,sLon,endLat,endLon).subscribe(
+      res =>{
+        console.log('this is long lat:', res);
+        this.distance = res;
       }
     )
   }
